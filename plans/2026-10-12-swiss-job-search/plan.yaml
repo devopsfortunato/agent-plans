@@ -3,33 +3,42 @@
 # graph. Neither fits a search that must stop before an irreversible application.
 schema_version: 1
 plan_id: swiss-job-search-2026-10
-version: 2
+version: 3
 title: Swiss DevSecOps job search
 priority: 1
 goal: >
   Find Swiss DevSecOps, Kubernetes, platform, and cloud engineering roles
   that fit a Swiss B work permit and a minimum salary of CHF 120000 per year,
   research each employer, tailor a CV and cover letter per role, verify each
-  tailored CV against the posting, submit an application only after a
-  person approves that role, and keep one status record for every role
-  from shortlist through submission.
+  tailored CV against the posting, and submit an application only after a
+  person approves that role. After that approval, Applier fills the
+  employer's form in the browser from the tailored CV and cover letter and
+  stops before the final submit. Alfonso reviews the filled form. Applier
+  submits only after his explicit yes, and never emails anyone or creates
+  an account. Keep one status record for every role from shortlist through
+  submission.
 owner: orchestrator
 definition_of_done: >
   role_shortlist.md, company_briefs.md, and tailored_applications.md exist.
   cv_match_report.md records pass or fail for each role. approval_record.md
-  records a person's decision. application_record.md shows a receipt only for
-  roles that person approved, and shows that no other role was submitted.
-  application_status.md lists every shortlisted role and its status through
-  submission, and it is the source of truth for that state.
+  records a person's decision. filled_application.md records each form
+  Applier filled and states that the final submit was not used.
+  form_approval.md records Alfonso's yes or hold on each filled form.
+  application_record.md shows a receipt only for roles he marked yes, and
+  shows that no other role was submitted. application_status.md lists every
+  shortlisted role and its status through submission, and it is the source
+  of truth for that state.
 budget:
   tokens: 1200000
   hours: 60
   usd: 0
 human_approval_policy: >
-  Submitting an application is irreversible and needs a person. While that
-  gate is open, do not apply. The safe default is hold. Changing the salary
-  floor, the permit constraint, the role focus, the goal, or the deadline
-  also needs a person.
+  Submitting an application is irreversible and needs a person. Applier may
+  fill the form and must stop before the final submit. While Alfonso has
+  not approved that filled form, do not submit. The safe default is hold.
+  Applier never emails anyone and never creates an account. Changing the
+  salary floor, the permit constraint, the role focus, the goal, or the
+  deadline also needs a person.
 constraints:
   deadline: "2026-11-09T17:00:00+01:00"
   max_parallel: 2
@@ -45,6 +54,8 @@ deliverables:
   - tailored_applications.md
   - cv_match_report.md
   - approval_record.md
+  - filled_application.md
+  - form_approval.md
   - application_record.md
   - application_status.md
 tasks:
@@ -273,13 +284,15 @@ tasks:
       attempts: 0
 
   - id: T5
-    title: Submit approved applications
+    title: Fill application forms
     section: Gate
-    task_type: application_submit
+    task_type: form_filling
     objective: >
-      Submit an application only for roles approval_record.md marks approve.
-      Record a receipt for each submission. Submit nothing when the record
-      says hold. This step cannot be undone.
+      For each role approval_record.md marks approve, fill the employer's
+      application form in the browser from the tailored CV and cover letter.
+      Stop before the final submit and leave the form for Alfonso to review.
+      Do nothing for a role marked hold. Do not email anyone. Do not create
+      an account.
     inputs:
       - artifact: approval_record.md
         from_task: M1
@@ -288,21 +301,127 @@ tasks:
       - artifact: tailored_applications.md
         from_task: T3
     outputs:
-      - artifact: application_record.md
+      - artifact: filled_application.md
         type: markdown
     depends_on:
       - M1
+    estimate_hours:
+      optimistic: 2
+      likely: 4
+      pessimistic: 6
+    required_capabilities:
+      - form_filling
+      - browser_operation
+    assignee: applier
+    acceptance_criteria:
+      - filled_application.md lists one filled form for every role approval_record.md marks approve, and no others.
+      - Each form uses the CV and cover letter for that role from tailored_applications.md.
+      - The record states that the final submit control was not used.
+      - No email was sent and no account was created.
+      - A role marked hold has no filled form.
+      - Each filled role had a pass in cv_match_report.md.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 30000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M2
+    title: Approve filled forms
+    section: Gate
+    task_type: human_approval
+    objective: >
+      Alfonso reviews each filled form and records yes or hold. Do not say
+      yes for a role whose cv_match_report.md says fail, or for a role
+      approval_record.md marks hold. Holding is the safe default. This is
+      the explicit approval Applier needs before it submits.
+    inputs:
+      - artifact: filled_application.md
+        from_task: T5
+      - artifact: approval_record.md
+        from_task: M1
+      - artifact: cv_match_report.md
+        from_task: T4
+      - artifact: tailored_applications.md
+        from_task: T3
+    outputs:
+      - artifact: form_approval.md
+        type: markdown
+    depends_on:
+      - T5
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - form_approval.md says yes or hold for each filled form.
+      - It names Alfonso and the decision time.
+      - It does not say yes for a role whose cv_match_report.md says fail.
+      - It does not say yes for a role approval_record.md marks hold.
+    risk: high
+    reversible: true
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T7
+    title: Submit approved applications
+    section: Gate
+    task_type: application_submit
+    objective: >
+      Submit an application only for roles form_approval.md marks yes. Use
+      the filled form from filled_application.md. Record a receipt for each
+      submission. Submit nothing when the record says hold. Do not email
+      anyone. Do not create an account. This step cannot be undone.
+    inputs:
+      - artifact: form_approval.md
+        from_task: M2
+      - artifact: filled_application.md
+        from_task: T5
+      - artifact: approval_record.md
+        from_task: M1
+      - artifact: cv_match_report.md
+        from_task: T4
+    outputs:
+      - artifact: application_record.md
+        type: markdown
+    depends_on:
+      - M2
     estimate_hours:
       optimistic: 1
       likely: 2
       pessimistic: 3
     required_capabilities:
-      - human_approval
-    assignee: human
+      - application_submit
+      - browser_operation
+    assignee: applier
     acceptance_criteria:
-      - application_record.md lists a receipt for every role approval_record.md marks approve, and no others.
+      - application_record.md lists a receipt for every role form_approval.md marks yes, and no others.
       - Nothing is submitted for a role marked hold.
       - Each submitted role had a pass in cv_match_report.md.
+      - Each receipt is for a form filled_application.md already recorded.
+      - No email was sent and no account was created.
     risk: high
     reversible: false
     needs_human: true
@@ -326,19 +445,22 @@ tasks:
       Write the status of every shortlisted role through submission.
       application_status.md is the source of truth. Each role is shortlisted,
       then held or submitted. A submitted role carries the receipt from
-      application_record.md. Log this after T5, once submissions exist.
+      application_record.md and a yes from form_approval.md. Log this after
+      T7, once submissions exist.
     inputs:
       - artifact: role_shortlist.md
         from_task: T1
       - artifact: approval_record.md
         from_task: M1
+      - artifact: form_approval.md
+        from_task: M2
       - artifact: application_record.md
-        from_task: T5
+        from_task: T7
     outputs:
       - artifact: application_status.md
         type: markdown
     depends_on:
-      - T5
+      - T7
     estimate_hours:
       optimistic: 0.5
       likely: 1
@@ -349,8 +471,8 @@ tasks:
     assignee: application-tracker
     acceptance_criteria:
       - application_status.md lists every role in role_shortlist.md.
-      - Each role is marked held or submitted, matching approval_record.md.
-      - Each submitted role cites the receipt in application_record.md.
+      - Each role is marked held or submitted, matching approval_record.md and form_approval.md.
+      - Each submitted role has yes in form_approval.md and cites the receipt in application_record.md.
       - A role marked hold has no receipt.
     risk: low
     reversible: true

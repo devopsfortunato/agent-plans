@@ -87,6 +87,18 @@ bots:
       - cv_writing
       - cover_letter
     capacity: 1
+  - name: applier
+    description: >
+      Applier (Grok Bot id 8fd043c0-ef1e-4176-98df-1a817ba02a0f). Fills in
+      job application forms in the browser from the tailored CV and cover
+      letter. Always stops before the final submit for Alfonso's review,
+      and submits only after his explicit approval. Never emails anyone
+      and never creates accounts.
+    capabilities:
+      - form_filling
+      - browser_operation
+      - application_submit
+    capacity: 1
   - name: application-tracker
     description: >
       Application Tracker. Tracks every job application and its status.
