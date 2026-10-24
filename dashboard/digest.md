@@ -26,6 +26,14 @@ Post with `digest --post` when SLACK_DIGEST_WEBHOOK is set.
 - Change: Added applier to the roster (Grok Bot id 8fd043c0-ef1e-4176-98df-1a817ba02a0f). T5 is now Applier filling the form and stopping before submit. Added M2, a needs_human gate where Alfonso reviews the filled form. Added T7, Applier submitting only the forms M2 marks yes. T7 is irreversible, so needs_human is true. T6 now depends on T7. No running task was rescheduled or reassigned.
 - Frozen: none (no task is in progress).
 
+### swiss-consulting-2026-10
+
+## 2026-10-24 v1
+
+- Reason: First live plan for Alfonso's solo IT consulting launch in Ticino. research-report is one reversible task and has no human gate. announcement is a publish graph. Neither fits, so this is a custom graph from the field guide in plans/_template/. The migration office email and the contract and conflict check were already finished on 24 Oct 2026. Those two tasks file the records. They stay planned until Accuracy attests the files and the Planner runs complete. Recorded here before the goal took those records as deliverables.
+- Change: Added consulting-planner (Grok Bot id 46dc6a74-1ada-476e-a42d-f092e28f2348), consulting-tracker (Grok Bot id f1f22036-c6a3-4d56-95ea-e5cb548850ec), contract-hunter (Grok Bot id 0ff0e5e5-dbea-4631-aa0d-5a0ecf692ce0), and meetup-scout (Grok Bot id 9b509c74-d9b9-4b52-a020-1f7bc79d99d8). Added T1 (consulting-tracker files the migration office email from Gmail) and T2 (consulting-planner files the contract check), T3 and M1 for the payrolling simulations and Alfonso's send or account gate, T4 through T6 for the anonymized case studies, the consulting CV, and the accuracy check, T7 and T8 for the daily contract search and the Lugano meetup search, T9 and M2 for broker drafts and Alfonso's send gate, T10 and M3 for the first mission through an umbrella company or a broker, T11 and M4 for the Einzelfirma on a second client, and T12, T13, M5, and T14 for the tracker log, follow-up drafts, Alfonso's follow-up gate, and the Monday status. M1, M2, M3, M4, and M5 are irreversible, so needs_human is true. Bots draft. Schedule origin is 2026-10-24 09:00 Europe/Zurich. Deadline is 2027-01-22 17:00 Europe/Zurich, 90 days later. The public wording calls the employer the current employer and leaves out client names and client figures. The private 90-day notes stay in github.com/devopsfortunato/swiss-consulting.
+- Frozen: none (no task is in progress).
+
 ## Decisions needed
 
 - (none)

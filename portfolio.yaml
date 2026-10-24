@@ -3,9 +3,9 @@
 schema_version: 1
 kind: portfolio
 schedule: origin
-plans_count: 2
+plans_count: 3
 tasks_done: 0
-tasks_active: 16
+tasks_active: 35
 blocked: 0
 awaiting_human: 0
 failed: 0
@@ -120,6 +120,76 @@ plans:
     priority: 1
     forecast_hours: 39
     forecast_hour_ratio: 0.65
+    forecast_warnings: []
+    forecast_hold: false
+    forecast_tokens: null
+    forecast_usd: null
+    subplans: []
+  - plan_id: swiss-consulting-2026-10
+    directory: "plans/2026-10-24-swiss-consulting"
+    version: 1
+    progress_done: 0
+    progress_active: 19
+    progress_percent: "0.0"
+    critical_path:
+      - T2
+      - T4
+      - T5
+      - T6
+      - T9
+      - M2
+      - T10
+      - M3
+      - T11
+      - M4
+      - T12
+      - T13
+      - M5
+      - T14
+    critical_path_residual:
+      - T2
+      - T4
+      - T5
+      - T6
+      - T9
+      - M2
+      - T10
+      - M3
+      - T11
+      - M4
+      - T12
+      - T13
+      - M5
+      - T14
+    critical_residual_hours: 26
+    makespan_hours: 28
+    projected_finish: "2026-10-25T13:00:00+02:00"
+    deadline: "2027-01-22T17:00:00+01:00"
+    deadline_slack_hours: 2141
+    schedule_variance:
+      samples: 0
+      actual_hours: null
+      expected_hours: null
+      pooled_ratio: null
+    budget_hours: 50
+    actual_hours: 0
+    budget_burn: 0
+    estimate_error: null
+    blocked: []
+    awaiting_human: []
+    failed: []
+    status_counts:
+      planned: 19
+      ready: 0
+      in_progress: 0
+      in_review: 0
+      done: 0
+      blocked: 0
+      failed: 0
+      cancelled: 0
+    priority: 1
+    forecast_hours: 36
+    forecast_hour_ratio: 0.72
     forecast_warnings: []
     forecast_hold: false
     forecast_tokens: null

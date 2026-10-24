@@ -173,6 +173,47 @@ bots:
       - bot_design
       - instruction_review
     capacity: 1
+  - name: consulting-planner
+    description: >
+      Consulting Planner (Grok Bot id 46dc6a74-1ada-476e-a42d-f092e28f2348).
+      Lead for the Ticino consulting launch. Runs the 90-day plan from the
+      private repo github.com/devopsfortunato/swiss-consulting, sends the
+      weekly status every Monday, and drafts outreach. Mail to a firm, a
+      broker, or an office, plus any account or signature, stays with Alfonso.
+    capabilities:
+      - launch_planning
+      - record_keeping
+      - payrolling_research
+      - positioning
+      - outreach_drafting
+      - mission_drafting
+      - weekly_status
+    capacity: 1
+  - name: consulting-tracker
+    description: >
+      Consulting Tracker (Grok Bot id f1f22036-c6a3-4d56-95ea-e5cb548850ec).
+      Reads Gmail to track outreach to brokers, payrolling firms, and the
+      migration office, plus contract submissions. Flags replies and due
+      follow-ups daily at 18:00. Does not send mail.
+    capabilities:
+      - gmail_tracking
+      - follow_up_tracking
+    capacity: 1
+  - name: contract-hunter
+    description: >
+      Contract Hunter (Grok Bot id 0ff0e5e5-dbea-4631-aa0d-5a0ecf692ce0).
+      Runs the daily contract-role search at 9:30.
+    capabilities:
+      - contract_search
+    capacity: 1
+  - name: meetup-scout
+    description: >
+      Meetup Scout (Grok Bot id 9b509c74-d9b9-4b52-a020-1f7bc79d99d8).
+      Runs the daily search at 9:45 for tech and networking events near
+      Lugano.
+    capabilities:
+      - event_search
+    capacity: 1
 
   # Upstream example roles. Kept so examples/ and the product-announcement
   # plan still validate. Not part of the owner's fleet.
