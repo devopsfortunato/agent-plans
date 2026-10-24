@@ -1,0 +1,951 @@
+# yaml-language-server: $schema=../../schemas/plan.schema.json
+# Custom graph. research-report has no human gate. announcement is a publish
+# graph. Neither fits a launch where every external send, submission, account,
+# and signature stops for Alfonso. Bots draft. The private 90-day notes stay
+# in github.com/devopsfortunato/swiss-consulting. This file stays generic.
+schema_version: 1
+plan_id: swiss-consulting-2026-10
+version: 1
+title: Ticino IT consulting launch
+priority: 1
+goal: >
+  Launch solo IT consulting in Ticino over 90 days. File the migration
+  office email and the contract and conflict check that Alfonso already
+  finished on 24 Oct 2026. Compare payrolling with MITC, PayrollPlus,
+  Helvetic Payroll, and Diligo. Publish anonymized case studies and a
+  consulting CV. Draft outreach to Swisslinx, Nicoll Curtin, Hays, and
+  Bosshard & Partner. Run the daily contract search and the Lugano meetup
+  search, and feed both to Consulting Planner. Consulting Tracker keeps
+  the log. Take the first mission through an umbrella company or a broker.
+  Open an Einzelfirma only for the second client. Bots draft. Alfonso
+  sends, submits, opens accounts, and signs. Call the employer the current
+  employer. Leave client names and client figures out of this repo.
+owner: orchestrator
+definition_of_done: >
+  migration_office_record.md and contract_conflict_check.md record the
+  24 Oct 2026 work. payrolling_simulations.md covers MITC, PayrollPlus,
+  Helvetic Payroll, and Diligo. payrolling_decision.md, broker_send_record.md,
+  first_mission_record.md, einzelfirma_decision.md, and follow_up_record.md
+  each record Alfonso's sent, submitted, opened, signed, or hold decision.
+  case_studies.md and consulting_cv.md stay anonymized, and
+  positioning_review.md says pass or fail. contract_leads.md and
+  meetup_leads.md are the feeds. tracker_log.md is the source of truth for
+  outreach and submissions. monday_status.md is the Monday note. The first
+  mission record uses an umbrella company or a broker. The Einzelfirma
+  record stays on hold until a second client exists.
+budget:
+  tokens: 1000000
+  hours: 50
+  usd: 0
+human_approval_policy: >
+  Every email, submission, account, and signature needs Alfonso. Bots draft
+  and stop. While he has not approved, do not send, submit, open an account,
+  or sign. The safe default is hold. The Monday status is the note in this
+  plan. It is not mail to a firm, a broker, or an office. Changing the goal,
+  the current-employer constraint, or the deadline also needs a person.
+  Artifacts in this repo call the employer the current employer and leave
+  out client names and client figures.
+constraints:
+  deadline: "2027-01-22T17:00:00+01:00"
+  max_parallel: 3
+  schedule_origin: "2026-10-24T09:00:00+02:00"
+provided_inputs:
+  - artifact: consulting_context.md
+    description: >
+      Launch context for Ticino. The detailed 90-day notes stay in the
+      private repo github.com/devopsfortunato/swiss-consulting. This public
+      plan calls the employer the current employer and does not copy a
+      client name or a client figure.
+deliverables:
+  - migration_office_record.md
+  - contract_conflict_check.md
+  - payrolling_simulations.md
+  - payrolling_decision.md
+  - case_studies.md
+  - consulting_cv.md
+  - positioning_review.md
+  - contract_leads.md
+  - meetup_leads.md
+  - broker_drafts.md
+  - broker_send_record.md
+  - first_mission_draft.md
+  - first_mission_record.md
+  - einzelfirma_draft.md
+  - einzelfirma_decision.md
+  - tracker_log.md
+  - follow_up_drafts.md
+  - follow_up_record.md
+  - monday_status.md
+tasks:
+  - id: T1
+    title: File the migration office record
+    section: Setup
+    task_type: record_keeping
+    objective: >
+      File the record of the migration office email Alfonso already sent on
+      24 Oct 2026. Read it from Gmail. State the date and that the email went
+      to the migration office. Call the employer the current employer. Leave
+      out client names and client figures. Do not send another email.
+    inputs:
+      - artifact: consulting_context.md
+    outputs:
+      - artifact: migration_office_record.md
+        type: markdown
+    depends_on: []
+    estimate_hours:
+      optimistic: 0.5
+      likely: 1
+      pessimistic: 1.5
+    required_capabilities:
+      - gmail_tracking
+    assignee: consulting-tracker
+    acceptance_criteria:
+      - migration_office_record.md states that the migration office email was sent on 24 Oct 2026.
+      - The record calls the employer the current employer.
+      - The record leaves out client names and client figures.
+      - The record states that this task sent no email.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 20000
+      hours: 2
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T2
+    title: File the contract and conflict check
+    section: Setup
+    task_type: record_keeping
+    objective: >
+      File the contract and conflict check Alfonso already finished on 24 Oct
+      2026. Record the date and the outcome he already reached for outside
+      work. Call the employer the current employer. Leave out client names
+      and client figures. Do not contact the employer.
+    inputs:
+      - artifact: consulting_context.md
+    outputs:
+      - artifact: contract_conflict_check.md
+        type: markdown
+    depends_on: []
+    estimate_hours:
+      optimistic: 0.5
+      likely: 1
+      pessimistic: 1.5
+    required_capabilities:
+      - record_keeping
+    assignee: consulting-planner
+    acceptance_criteria:
+      - contract_conflict_check.md states that the check was finished on 24 Oct 2026.
+      - The record states the outcome for outside work.
+      - The record calls the employer the current employer.
+      - The record leaves out client names and client figures.
+      - The record states that this task did not contact the employer.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 20000
+      hours: 2
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T3
+    title: Draft payrolling simulations
+    section: Setup
+    task_type: payrolling_research
+    objective: >
+      Draft a simulation for MITC, PayrollPlus, Helvetic Payroll, and Diligo.
+      Use the contract check so the comparison stays inside the outside-work
+      outcome. Compare the umbrella path each firm offers. Do not create an
+      account. Do not email a firm. The likely estimate is one comparison of
+      the four firms.
+    inputs:
+      - artifact: contract_conflict_check.md
+        from_task: T2
+    outputs:
+      - artifact: payrolling_simulations.md
+        type: markdown
+    depends_on:
+      - T2
+    estimate_hours:
+      optimistic: 3
+      likely: 4
+      pessimistic: 5
+    required_capabilities:
+      - payrolling_research
+    assignee: consulting-planner
+    acceptance_criteria:
+      - payrolling_simulations.md has one section for MITC, PayrollPlus, Helvetic Payroll, and Diligo.
+      - Each section describes that firm's umbrella path.
+      - The comparison follows the outside-work outcome in contract_conflict_check.md.
+      - The record states that no account was created and no email was sent.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 80000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M1
+    title: Approve payrolling contact
+    section: Setup
+    task_type: human_approval
+    objective: >
+      Alfonso records sent, account-opened, or hold for each payrolling firm.
+      Sent means he emailed the firm. Account-opened means he created the
+      account. Hold means he did neither. Hold is the safe default. This
+      step cannot be undone once a message is sent or an account exists.
+    inputs:
+      - artifact: payrolling_simulations.md
+        from_task: T3
+    outputs:
+      - artifact: payrolling_decision.md
+        type: markdown
+    depends_on:
+      - T3
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - payrolling_decision.md says sent, account-opened, or hold for MITC, PayrollPlus, Helvetic Payroll, and Diligo.
+      - It names Alfonso and the decision time.
+      - Hold means no email was sent and no account was created for that firm.
+      - A bot did not send the email and did not create the account.
+    risk: high
+    reversible: false
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T4
+    title: Draft anonymized case studies
+    section: Positioning
+    task_type: positioning
+    objective: >
+      Draft case studies from work the context supports. Anonymize every
+      study. Call the employer the current employer. Leave out client names
+      and client figures. Stay inside the outside-work outcome from the
+      contract check. The likely estimate is a short set of studies.
+    inputs:
+      - artifact: consulting_context.md
+      - artifact: contract_conflict_check.md
+        from_task: T2
+    outputs:
+      - artifact: case_studies.md
+        type: markdown
+    depends_on:
+      - T2
+    estimate_hours:
+      optimistic: 3
+      likely: 4
+      pessimistic: 5
+    required_capabilities:
+      - positioning
+    assignee: consulting-planner
+    acceptance_criteria:
+      - case_studies.md contains the anonymized studies.
+      - Each study calls the employer the current employer.
+      - No study names a client or states a client figure.
+      - The studies stay inside the outside-work outcome in contract_conflict_check.md.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 100000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T5
+    title: Draft the consulting CV
+    section: Positioning
+    task_type: positioning
+    objective: >
+      Draft one consulting CV from the anonymized case studies and the
+      context. Aim it at contract roles in Ticino and the rest of Switzerland.
+      Call the employer the current employer. Leave out client names and
+      client figures. Do not invent experience the context does not support.
+    inputs:
+      - artifact: consulting_context.md
+      - artifact: case_studies.md
+        from_task: T4
+    outputs:
+      - artifact: consulting_cv.md
+        type: markdown
+    depends_on:
+      - T4
+    estimate_hours:
+      optimistic: 2
+      likely: 3
+      pessimistic: 4
+    required_capabilities:
+      - positioning
+    assignee: consulting-planner
+    acceptance_criteria:
+      - consulting_cv.md is one consulting CV.
+      - The CV calls the employer the current employer.
+      - The CV leaves out client names and client figures.
+      - Every engagement on the CV is supported by consulting_context.md or case_studies.md.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 80000
+      hours: 6
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T6
+    title: Verify the positioning is anonymized
+    section: Positioning
+    task_type: accuracy_review
+    objective: >
+      Check the case studies and the consulting CV against the anonymized
+      wording. Fail the pack when it names a client, states a client figure,
+      or names the employer as anything other than the current employer.
+    inputs:
+      - artifact: case_studies.md
+        from_task: T4
+      - artifact: consulting_cv.md
+        from_task: T5
+    outputs:
+      - artifact: positioning_review.md
+        type: markdown
+    depends_on:
+      - T5
+    estimate_hours:
+      optimistic: 1
+      likely: 2
+      pessimistic: 3
+    required_capabilities:
+      - verification
+      - fact_check
+    assignee: accuracy
+    acceptance_criteria:
+      - positioning_review.md says pass or fail for case_studies.md and for consulting_cv.md.
+      - A fail names the line that names a client, states a client figure, or names the employer other than as the current employer.
+      - A pass means both files stay anonymized.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 40000
+      hours: 4
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T7
+    title: Search contract roles daily
+    section: Search
+    task_type: contract_search
+    objective: >
+      Search for contract roles that fit the Ticino consulting launch. Repeat
+      the search every day at 9:30 Europe/Zurich. This task is the operating
+      pass and the standing note for that cadence. Feed the leads to
+      Consulting Planner. The likely estimate is one pass.
+    inputs:
+      - artifact: consulting_context.md
+    outputs:
+      - artifact: contract_leads.md
+        type: markdown
+    depends_on: []
+    estimate_hours:
+      optimistic: 2
+      likely: 3
+      pessimistic: 4
+    required_capabilities:
+      - contract_search
+    assignee: contract-hunter
+    acceptance_criteria:
+      - contract_leads.md lists contract roles and the source for each role.
+      - The note states that the search repeats daily at 9:30 Europe/Zurich.
+      - Each lead is a contract role.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 120000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T8
+    title: Scout meetups near Lugano
+    section: Search
+    task_type: event_search
+    objective: >
+      Search for tech and networking events near Lugano. Repeat the search
+      every day at 9:45 Europe/Zurich. This task is the operating pass and
+      the standing note for that cadence. Feed the events to Consulting
+      Planner. Do not RSVP. Do not create an account. The likely estimate is
+      one pass.
+    inputs:
+      - artifact: consulting_context.md
+    outputs:
+      - artifact: meetup_leads.md
+        type: markdown
+    depends_on: []
+    estimate_hours:
+      optimistic: 1
+      likely: 2
+      pessimistic: 3
+    required_capabilities:
+      - event_search
+    assignee: meetup-scout
+    acceptance_criteria:
+      - meetup_leads.md lists tech and networking events near Lugano and the source for each event.
+      - The note states that the search repeats daily at 9:45 Europe/Zurich.
+      - The record states that no RSVP was sent and no account was created.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 60000
+      hours: 6
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T9
+    title: Draft broker outreach
+    section: Outreach
+    task_type: outreach_drafting
+    objective: >
+      Draft outreach to Swisslinx, Nicoll Curtin, Hays, and Bosshard & Partner.
+      Use the consulting CV, the case studies, and the contract leads. Draft
+      only when positioning_review.md says pass. Do not email a broker.
+    inputs:
+      - artifact: consulting_cv.md
+        from_task: T5
+      - artifact: case_studies.md
+        from_task: T4
+      - artifact: positioning_review.md
+        from_task: T6
+      - artifact: contract_leads.md
+        from_task: T7
+    outputs:
+      - artifact: broker_drafts.md
+        type: markdown
+    depends_on:
+      - T6
+      - T7
+    estimate_hours:
+      optimistic: 3
+      likely: 4
+      pessimistic: 5
+    required_capabilities:
+      - outreach_drafting
+    assignee: consulting-planner
+    acceptance_criteria:
+      - broker_drafts.md has one draft for Swisslinx, Nicoll Curtin, Hays, and Bosshard & Partner.
+      - Each draft uses the consulting CV and stays inside the anonymized wording.
+      - When positioning_review.md says fail, the file holds the drafts and states that they are not for sending.
+      - The record states that no email was sent.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 100000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M2
+    title: Approve broker outreach
+    section: Outreach
+    task_type: human_approval
+    objective: >
+      Alfonso records sent or hold for each broker draft. Sent means he
+      emailed that broker. Hold means he did not. Do not record sent when
+      positioning_review.md says fail. Hold is the safe default. This step
+      cannot be undone once a message is sent.
+    inputs:
+      - artifact: broker_drafts.md
+        from_task: T9
+      - artifact: positioning_review.md
+        from_task: T6
+    outputs:
+      - artifact: broker_send_record.md
+        type: markdown
+    depends_on:
+      - T9
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - broker_send_record.md says sent or hold for Swisslinx, Nicoll Curtin, Hays, and Bosshard & Partner.
+      - It names Alfonso and the decision time.
+      - It does not say sent for a pack whose positioning_review.md says fail.
+      - A bot did not send the email.
+    risk: high
+    reversible: false
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T10
+    title: Draft the first mission
+    section: Mission
+    task_type: mission_drafting
+    objective: >
+      Draft the first mission through an umbrella company or a broker. Use
+      the payrolling decision, the broker send record, the contract leads,
+      and the anonymized CV. Do not submit the pack. Do not sign. An
+      Einzelfirma is not the path for this mission.
+    inputs:
+      - artifact: payrolling_decision.md
+        from_task: M1
+      - artifact: broker_send_record.md
+        from_task: M2
+      - artifact: contract_leads.md
+        from_task: T7
+      - artifact: consulting_cv.md
+        from_task: T5
+      - artifact: positioning_review.md
+        from_task: T6
+    outputs:
+      - artifact: first_mission_draft.md
+        type: markdown
+    depends_on:
+      - M1
+      - M2
+    estimate_hours:
+      optimistic: 3
+      likely: 4
+      pessimistic: 5
+    required_capabilities:
+      - mission_drafting
+    assignee: consulting-planner
+    acceptance_criteria:
+      - first_mission_draft.md routes the mission through an umbrella company or a broker.
+      - The draft does not use an Einzelfirma.
+      - The draft uses the anonymized CV and a lead from contract_leads.md.
+      - The record states that nothing was submitted and nothing was signed.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 100000
+      hours: 8
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M3
+    title: Approve the first mission
+    section: Mission
+    task_type: human_approval
+    objective: >
+      Alfonso records submitted or hold for the first mission. Submitted
+      means he sent the pack and signed only what that submission requires.
+      The path is an umbrella company or a broker. Hold means he did neither.
+      Do not record submitted when positioning_review.md says fail. Hold is
+      the safe default. This step cannot be undone once the pack is submitted
+      or a signature is on it.
+    inputs:
+      - artifact: first_mission_draft.md
+        from_task: T10
+      - artifact: positioning_review.md
+        from_task: T6
+    outputs:
+      - artifact: first_mission_record.md
+        type: markdown
+    depends_on:
+      - T10
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - first_mission_record.md says submitted or hold.
+      - It names Alfonso and the decision time.
+      - A submitted mission names an umbrella company or a broker as the path.
+      - A submitted mission does not use an Einzelfirma.
+      - It does not say submitted when positioning_review.md says fail.
+      - A bot did not submit the pack and did not sign.
+    risk: high
+    reversible: false
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T11
+    title: Draft the Einzelfirma pack
+    section: Mission
+    task_type: mission_drafting
+    objective: >
+      Draft the Einzelfirma pack for a second client. The first mission stays
+      on the umbrella or broker path recorded in first_mission_record.md.
+      Leave out the client name and any client figure. Do not register the
+      firm. Do not sign.
+    inputs:
+      - artifact: first_mission_record.md
+        from_task: M3
+      - artifact: consulting_context.md
+    outputs:
+      - artifact: einzelfirma_draft.md
+        type: markdown
+    depends_on:
+      - M3
+    estimate_hours:
+      optimistic: 2
+      likely: 3
+      pessimistic: 4
+    required_capabilities:
+      - mission_drafting
+    assignee: consulting-planner
+    acceptance_criteria:
+      - einzelfirma_draft.md is the pack for an Einzelfirma on a second client.
+      - The draft states that the first mission stays on the umbrella or broker path.
+      - The draft leaves out the client name and any client figure.
+      - The record states that the firm was not registered and nothing was signed.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 80000
+      hours: 6
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M4
+    title: Approve the Einzelfirma
+    section: Mission
+    task_type: human_approval
+    objective: >
+      Alfonso records registered, signed, or hold. Registered means he opened
+      the Einzelfirma. Signed means he signed for that firm. Hold means he
+      did neither. Hold is the safe default while no second client exists.
+      Do not register or sign for the first mission. This step cannot be
+      undone once the firm is registered or a signature is on the pack.
+    inputs:
+      - artifact: einzelfirma_draft.md
+        from_task: T11
+      - artifact: first_mission_record.md
+        from_task: M3
+    outputs:
+      - artifact: einzelfirma_decision.md
+        type: markdown
+    depends_on:
+      - T11
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - einzelfirma_decision.md says registered, signed, or hold.
+      - It names Alfonso and the decision time.
+      - It says whether a second client exists, and it does not name that client or state a client figure.
+      - Registered or signed appears only when the record says a second client exists.
+      - The first mission stays on the umbrella or broker path.
+      - A bot did not register the firm and did not sign.
+    risk: high
+    reversible: false
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T12
+    title: Log outreach and submissions
+    section: Tracking
+    task_type: outreach_tracking
+    objective: >
+      Write the status of the migration office email, the payrolling contact,
+      the broker outreach, the first mission, and the Einzelfirma decision.
+      tracker_log.md is the source of truth. Repeat the Gmail read every day
+      at 18:00 Europe/Zurich and flag replies and follow-ups that are due.
+      Do not send a follow-up. The likely estimate is one pass of the log.
+    inputs:
+      - artifact: migration_office_record.md
+        from_task: T1
+      - artifact: payrolling_decision.md
+        from_task: M1
+      - artifact: broker_send_record.md
+        from_task: M2
+      - artifact: first_mission_record.md
+        from_task: M3
+      - artifact: einzelfirma_decision.md
+        from_task: M4
+    outputs:
+      - artifact: tracker_log.md
+        type: markdown
+    depends_on:
+      - T1
+      - M4
+    estimate_hours:
+      optimistic: 1
+      likely: 2
+      pessimistic: 3
+    required_capabilities:
+      - gmail_tracking
+      - follow_up_tracking
+    assignee: consulting-tracker
+    acceptance_criteria:
+      - tracker_log.md lists the migration office email, each payrolling firm, each broker, the first mission, and the Einzelfirma decision.
+      - Each row matches the record it cites.
+      - The log flags replies and follow-ups that are due.
+      - The note states that the Gmail read repeats daily at 18:00 Europe/Zurich.
+      - The record states that no follow-up was sent.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 50000
+      hours: 4
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T13
+    title: Draft due follow-ups
+    section: Tracking
+    task_type: outreach_drafting
+    objective: >
+      Draft a follow-up for each item tracker_log.md marks due. When nothing
+      is due, say so. Do not send the follow-up.
+    inputs:
+      - artifact: tracker_log.md
+        from_task: T12
+    outputs:
+      - artifact: follow_up_drafts.md
+        type: markdown
+    depends_on:
+      - T12
+    estimate_hours:
+      optimistic: 1
+      likely: 2
+      pessimistic: 3
+    required_capabilities:
+      - outreach_drafting
+    assignee: consulting-planner
+    acceptance_criteria:
+      - follow_up_drafts.md has one draft for each follow-up tracker_log.md marks due.
+      - When none are due, the file says that no follow-up is due.
+      - The record states that no email was sent.
+    risk: medium
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 40000
+      hours: 4
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: M5
+    title: Approve follow-up sends
+    section: Tracking
+    task_type: human_approval
+    objective: >
+      Alfonso records sent or hold for each follow-up draft. Sent means he
+      emailed that follow-up. Hold means he did not. Hold is the safe default.
+      This step cannot be undone once a message is sent.
+    inputs:
+      - artifact: follow_up_drafts.md
+        from_task: T13
+    outputs:
+      - artifact: follow_up_record.md
+        type: markdown
+    depends_on:
+      - T13
+    estimate_hours:
+      optimistic: 0
+      likely: 0
+      pessimistic: 0
+    required_capabilities:
+      - human_approval
+    assignee: human
+    acceptance_criteria:
+      - follow_up_record.md says sent or hold for each draft in follow_up_drafts.md.
+      - It names Alfonso and the decision time.
+      - When no follow-up is due, the record says hold.
+      - A bot did not send the email.
+    risk: high
+    reversible: false
+    needs_human: true
+    budget:
+      tokens: 0
+      hours: 0
+      usd: 0
+    max_retries: 0
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0
+
+  - id: T14
+    title: Draft the Monday status
+    section: Tracking
+    task_type: weekly_status
+    objective: >
+      Write the Monday status for Alfonso. Include the tracker log, the
+      follow-up decisions, and the meetup leads near Lugano. Repeat this
+      note every Monday through the 90-day window. This file is that note.
+      Do not email a firm, a broker, or an office. Do not RSVP.
+    inputs:
+      - artifact: tracker_log.md
+        from_task: T12
+      - artifact: follow_up_record.md
+        from_task: M5
+      - artifact: meetup_leads.md
+        from_task: T8
+    outputs:
+      - artifact: monday_status.md
+        type: markdown
+    depends_on:
+      - M5
+      - T8
+    estimate_hours:
+      optimistic: 0.5
+      likely: 1
+      pessimistic: 1.5
+    required_capabilities:
+      - weekly_status
+    assignee: consulting-planner
+    acceptance_criteria:
+      - monday_status.md summarizes tracker_log.md, follow_up_record.md, and meetup_leads.md.
+      - The note states that it repeats every Monday.
+      - The record states that no external email was sent and no RSVP was made.
+    risk: low
+    reversible: true
+    needs_human: false
+    budget:
+      tokens: 40000
+      hours: 3
+      usd: 0
+    max_retries: 2
+    status: planned
+    actuals:
+      start: null
+      end: null
+      hours: null
+      attempts: 0

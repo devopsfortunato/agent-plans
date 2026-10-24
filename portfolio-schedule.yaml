@@ -5,7 +5,7 @@ schema_version: 1
 kind: portfolio-schedule
 ordering: "priority, then deadline, then least slack"
 origin: "2026-10-08T09:00:00-05:00"
-makespan_hours: 128
+makespan_hours: 405
 overallocated: []
 plans:
   - plan_id: launch-announce-2026-10
@@ -18,6 +18,11 @@ plans:
     priority: 1
     offset_hours: 89
     deadline: "2026-11-09T17:00:00+01:00"
+  - plan_id: swiss-consulting-2026-10
+    directory: "plans/2026-10-24-swiss-consulting"
+    priority: 1
+    offset_hours: 377
+    deadline: "2027-01-22T17:00:00+01:00"
 tasks:
   - plan_id: launch-announce-2026-10
     task_id: T1
@@ -144,6 +149,158 @@ tasks:
     assignee: application-tracker
     start: 127
     finish: 128
+    slack: 0
+    duration_hours: 1
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T1
+    assignee: consulting-tracker
+    start: 377
+    finish: 378
+    slack: 20
+    duration_hours: 1
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T2
+    assignee: consulting-planner
+    start: 377
+    finish: 378
+    slack: 0
+    duration_hours: 1
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T7
+    assignee: contract-hunter
+    start: 377
+    finish: 380
+    slack: 7
+    duration_hours: 3
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T4
+    assignee: consulting-planner
+    start: 378
+    finish: 382
+    slack: 0
+    duration_hours: 4
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T8
+    assignee: meetup-scout
+    start: 378
+    finish: 380
+    slack: 23
+    duration_hours: 2
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T5
+    assignee: consulting-planner
+    start: 382
+    finish: 385
+    slack: 0
+    duration_hours: 3
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T3
+    assignee: consulting-planner
+    start: 385
+    finish: 389
+    slack: 9
+    duration_hours: 4
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T6
+    assignee: accuracy
+    start: 385
+    finish: 387
+    slack: 0
+    duration_hours: 2
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: M1
+    assignee: human
+    start: 389
+    finish: 389
+    slack: 9
+    duration_hours: 0
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T9
+    assignee: consulting-planner
+    start: 389
+    finish: 393
+    slack: 0
+    duration_hours: 4
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: M2
+    assignee: human
+    start: 393
+    finish: 393
+    slack: 0
+    duration_hours: 0
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T10
+    assignee: consulting-planner
+    start: 393
+    finish: 397
+    slack: 0
+    duration_hours: 4
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: M3
+    assignee: human
+    start: 397
+    finish: 397
+    slack: 0
+    duration_hours: 0
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T11
+    assignee: consulting-planner
+    start: 397
+    finish: 400
+    slack: 0
+    duration_hours: 3
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: M4
+    assignee: human
+    start: 400
+    finish: 400
+    slack: 0
+    duration_hours: 0
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T12
+    assignee: consulting-tracker
+    start: 400
+    finish: 402
+    slack: 0
+    duration_hours: 2
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T13
+    assignee: consulting-planner
+    start: 402
+    finish: 404
+    slack: 0
+    duration_hours: 2
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: M5
+    assignee: human
+    start: 404
+    finish: 404
+    slack: 0
+    duration_hours: 0
+    priority: 1
+  - plan_id: swiss-consulting-2026-10
+    task_id: T14
+    assignee: consulting-planner
+    start: 404
+    finish: 405
     slack: 0
     duration_hours: 1
     priority: 1
